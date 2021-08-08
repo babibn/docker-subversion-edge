@@ -1,6 +1,18 @@
-# mamohr/subversion-edge
+# BabiBN/subversion-edge
 
 This is a docker image of the Collabnet Subversion Edge Server
+
+## Build
+
+    git clone https://github.com/mamohr/docker-subversion-edge.git
+    cd docker-subversion-edge
+
+Then 
+
+    docker build -t edgesvn .
+OR
+
+    docker build --pull --rm -f "Dockerfile" -t dockersubversionedge:latest "."
 
 ## Usage
 

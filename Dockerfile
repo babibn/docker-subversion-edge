@@ -1,17 +1,21 @@
-FROM mamohr/centos-java:jre8
+FROM centos:7
 
-MAINTAINER Mario Mohr <mohr.mario@gmail.com>
+LABEL org.opencontainers.image.authors="Babak@Babak.pw"
+
+
 
 RUN \
   yum update -y && \
-  yum install -y epel-release && \
-  yum install -y net-tools python-setuptools hostname inotify-tools yum-utils && \
-  yum clean all && \
-  easy_install supervisor
+  yum install -y epel-release  java-1.8.0-openjdk wget && \
+  yum install -y net-tools hostname inotify-tools yum-utils  python3 && \
+  yum clean all 
+
+RUN \
+    pip3 install supervisor 
 
 ENV FILE https://downloads-guests.open.collab.net/files/documents/61/17071/CollabNetSubversionEdge-5.2.0_linux-x86_64.tar.gz
 
-RUN wget -q ${FILE} -O /tmp/csvn.tgz && \
+RUN wget --no-check-certificate -q ${FILE} -O /tmp/csvn.tgz && \
     mkdir -p /opt/csvn && \
     tar -xzf /tmp/csvn.tgz -C /opt/csvn --strip=1 && \
     rm -rf /tmp/csvn.tgz
